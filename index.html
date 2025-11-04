@@ -67,7 +67,8 @@
 
 						<!-- Contact -->
 
-							<article id="contact">				
+						<!-- WORKING CONTACT FORM -->
+							<article id="contact">
 								<h2 class="major">Kontakt</h2><p>Är du redo att ta rodret över din dataocean? <br> Hör av dig – vi hjälper dig sätta kursen</p>
 									<form id="contactForm">	
   									<div class="fields">
@@ -97,8 +98,43 @@
 									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul> -->
+
+<script> //Test script
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzkE8pHJK-DA7LS7WHBx4GhdHpllvJ6BRkbiJI87Qmp9ZjdLu3FUJ7o6WRKA9TxGQtqWQ/exec'; // Replace this!
+  const SECRET_KEY = "widerberg"; // must match the one in Apps Script
+
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+      key: SECRET_KEY,
+      referer: window.location.hostname // sends current domain
+    };
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.result === "success") {
+        alert('Tack! Ditt meddelande har sparats.');
+        e.target.reset();
+      } else {
+        alert('Behörighetsfel eller ogiltig begäran.');
+      }
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      alert('Något gick fel – försök igen senare.');
+    });
+  });
+</script>
 								
-								<script>
+								<!-- <script> //working script
   									const scriptURL = 'https://script.google.com/macros/s/AKfycbxR0jVCL3Kcc6llXObxAni6gTnf5bxuU5iNb0UNpSEGxKuqmaTA8YnScrQg-8wG0GD1Ow/exec'; // Replace this!
 
   										document.getElementById('contactForm').addEventListener('submit', e => {
@@ -124,7 +160,8 @@
       									alert('Något gick fel – försök igen senare.');
     									});
   									});
-								</script>
+								</script>-->
+								
 							</article>
 
 						<!-- Elements -->
@@ -390,6 +427,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
