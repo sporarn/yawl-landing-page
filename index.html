@@ -69,7 +69,43 @@
 
 							<article id="contact">
 
-<form id="contactForm">
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbz3mbN8uaws3p-sJctA1v3RNAKxei3fRYDB13GKKsPaFFhdHwjPIdjUU9B-zG4AnNeO/exec'; // Replace this!
+  const SECRET_KEY = "thpvauhoh2qn2y9thczml3h8"; // must match the one in Apps Script
+
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+      key: SECRET_KEY,
+      referer: window.location.hostname // sends current domain
+    };
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.result === "success") {
+        alert('Tack! Ditt meddelande har sparats.');
+        e.target.reset();
+      } else {
+        alert('Behörighetsfel eller ogiltig begäran.');
+      }
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      alert('Något gick fel – försök igen senare.');
+    });
+  });
+</script>
+
+
+<!--<form id="contactForm">
   <div class="fields">
     <div class="field half">
       <label for="name">Namn</label>
@@ -85,7 +121,7 @@
     </div>
 
     <!-- 🕵️‍♀️ Honeypot field (hidden from humans) -->
-    <div style="display:none;">
+    <!-- <div style="display:none;">
       <label for="website">If you are human, leave this blank</label>
       <input type="text" name="website" id="website" />
     </div>
@@ -109,7 +145,7 @@
       name: form.name.value,
       email: form.email.value,
       message: form.message.value,
-      honeypot: form.website.value, // 🕵️‍♀️ this should stay empty for real users-->
+      honeypot: form.website.value, // 🕵️‍♀️ this should stay empty for real users
       key: SECRET_KEY,
       referer: window.location.hostname
     };
@@ -132,7 +168,7 @@
       alert('Något gick fel – försök igen senare.');
     });
   });
-</script>
+</script>-->
 								
 
 <!--<form id="contactForm">
@@ -505,6 +541,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
