@@ -68,7 +68,7 @@
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Kontakt</h2><p>Är du redo att ta rodret över din dataocean? <br> Hör av dig – vi hjälper dig sätta kursen</p>
-								<form method="post" action="#">
+								<form id="contacForm" method="post" action="#">
 									<div class="fields">
 										<div class="field half">
 											<label for="name">Namn</label>
@@ -94,6 +94,33 @@
 									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul> -->
+								<script>
+  									const scriptURL = 'https://script.google.com/macros/s/AKfycbz3mbN8uaws3p-sJctA1v3RNAKxei3fRYDB13GKKsPaFFhdHwjPIdjUU9B-zG4AnNeO/exec'; // Replace this!
+
+  										document.getElementById('contactForm').addEventListener('submit', e => {
+   											 e.preventDefault();
+
+    									const formData = {
+      									name: e.target.name.value,
+     									email: e.target.email.value,
+      									message: e.target.message.value
+    									};
+
+    									fetch(scriptURL, {
+      									method: 'POST',
+      									body: JSON.stringify(formData)
+    									})
+    									.then(res => res.json())
+    									.then(response => {
+      									alert('Tack! Ditt meddelande har sparats.');
+      									e.target.reset();
+    									})
+    									.catch(err => {
+      									console.error('Error:', err);
+      									alert('Något gick fel – försök igen senare.');
+    									});
+  									});
+								</script>
 							</article>
 
 						<!-- Elements -->
@@ -359,6 +386,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
