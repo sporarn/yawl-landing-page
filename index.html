@@ -95,7 +95,58 @@
 									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul> -->
-								<script>
+
+<form id="contactForm">
+  <div class="fields">
+    <div class="field half">
+      <label for="name">Namn</label>
+      <input type="text" name="name" id="name" required />
+    </div>
+    <div class="field half">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+    </div>
+    <div class="field">
+      <label for="message">Meddelande</label>
+      <textarea name="message" id="message" rows="4" required></textarea>
+    </div>
+  </div>
+  <ul class="actions">
+    <li><input type="submit" value="Skicka" class="primary" /></li>
+    <li><input type="reset" value="Rensa" /></li>
+  </ul>
+</form>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxiwkboKzt6ocid418QsTMUY-yEpwlNCvRRW0Bxt2O8YJV2rBZuRBSrcpvu4pQh-tep/exec'; // Replace this!
+
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value
+    };
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(response => {
+      alert('Tack! Ditt meddelande har sparats.');
+      e.target.reset();
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      alert('Något gick fel – försök igen senare.');
+    });
+  });
+</script>
+
+								
+								<!--<script>
   									const scriptURL = 'https://script.google.com/macros/s/AKfycbxiwkboKzt6ocid418QsTMUY-yEpwlNCvRRW0Bxt2O8YJV2rBZuRBSrcpvu4pQh-tep/exec'; // Replace this!
 
   										document.getElementById('contactForm').addEventListener('submit', e => {
@@ -121,7 +172,7 @@
       									alert('Något gick fel – försök igen senare.');
     									});
   									});
-								</script>
+								</script>-->
 							</article>
 
 						<!-- Elements -->
@@ -387,6 +438,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
