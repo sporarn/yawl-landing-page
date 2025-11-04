@@ -69,6 +69,27 @@
 
 							<article id="contact">
 
+<form id="contactForm">
+  <div class="fields">
+    <div class="field half">
+      <label for="name">Namn</label>
+      <input type="text" name="name" id="name" required />
+    </div>
+    <div class="field half">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+    </div>
+    <div class="field">
+      <label for="message">Meddelande</label>
+      <textarea name="message" id="message" rows="4" required></textarea>
+    </div>
+
+  <ul class="actions">
+    <li><input type="submit" value="Skicka" class="primary" /></li>
+    <li><input type="reset" value="Rensa" /></li>
+  </ul>
+</form>
+
 <script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbz3mbN8uaws3p-sJctA1v3RNAKxei3fRYDB13GKKsPaFFhdHwjPIdjUU9B-zG4AnNeO/exec'; // Replace this!
   const SECRET_KEY = "thpvauhoh2qn2y9thczml3h8"; // must match the one in Apps Script
@@ -103,72 +124,6 @@
     });
   });
 </script>
-
-
-<!--<form id="contactForm">
-  <div class="fields">
-    <div class="field half">
-      <label for="name">Namn</label>
-      <input type="text" name="name" id="name" required />
-    </div>
-    <div class="field half">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" required />
-    </div>
-    <div class="field">
-      <label for="message">Meddelande</label>
-      <textarea name="message" id="message" rows="4" required></textarea>
-    </div>
-
-    <!-- 🕵️‍♀️ Honeypot field (hidden from humans) -->
-    <!-- <div style="display:none;">
-      <label for="website">If you are human, leave this blank</label>
-      <input type="text" name="website" id="website" />
-    </div>
-  </div>
-
-  <ul class="actions">
-    <li><input type="submit" value="Skicka" class="primary" /></li>
-    <li><input type="reset" value="Rensa" /></li>
-  </ul>
-</form>
-
-<script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbz3mbN8uaws3p-sJctA1v3RNAKxei3fRYDB13GKKsPaFFhdHwjPIdjUU9B-zG4AnNeO/exec'; // Replace this!
-  const SECRET_KEY = "thpvauhoh2qn2y9thczml3h8"; // must match Apps Script
-
-  document.getElementById('contactForm').addEventListener('submit', e => {
-    e.preventDefault();
-
-    const form = e.target;
-    const formData = {
-      name: form.name.value,
-      email: form.email.value,
-      message: form.message.value,
-      honeypot: form.website.value, // 🕵️‍♀️ this should stay empty for real users
-      key: SECRET_KEY,
-      referer: window.location.hostname
-    };
-
-    fetch(scriptURL, {
-      method: 'POST',
-      body: JSON.stringify(formData)
-    })
-    .then(res => res.json())
-    .then(response => {
-      if (response.result === "success") {
-        alert('Tack! Ditt meddelande har sparats.');
-        form.reset();
-      } else {
-        alert('Obehörig begäran eller misstänkt bot-aktivitet.');
-      }
-    })
-    .catch(err => {
-      console.error('Error:', err);
-      alert('Något gick fel – försök igen senare.');
-    });
-  });
-</script>-->
 								
 
 <!--<form id="contactForm">
@@ -541,6 +496,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
