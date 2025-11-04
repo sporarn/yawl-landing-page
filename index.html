@@ -85,10 +85,10 @@
     </div>
 
     <!-- 🕵️‍♀️ Honeypot field (hidden from humans) -->
-    <div class="display:none;">
+    <!-- <div class="display:none;">
       <label for="website">If you are human, leave this blank</label>
       <input type="text" name="website" id="website" />
-    </div>
+    </div>-->
   </div>
 
   <ul class="actions">
@@ -109,7 +109,7 @@
       name: form.name.value,
       email: form.email.value,
       message: form.message.value,
-      honeypot: form.website.value, // 🕵️‍♀️ this should stay empty for real users
+      //honeypot: form.website.value, // 🕵️‍♀️ this should stay empty for real users-->
       key: SECRET_KEY,
       referer: window.location.hostname
     };
@@ -505,6 +505,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
