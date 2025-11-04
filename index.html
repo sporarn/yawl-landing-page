@@ -66,8 +66,61 @@
 							</article>
 
 						<!-- Contact -->
+
 							<article id="contact">
-								<h2 class="major">Kontakt</h2><p>Är du redo att ta rodret över din dataocean? <br> Hör av dig – vi hjälper dig sätta kursen</p>
+
+<form id="contactForm">
+  <div class="fields">
+    <div class="field half">
+      <label for="name">Namn</label>
+      <input type="text" name="name" id="name" required />
+    </div>
+    <div class="field half">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+    </div>
+    <div class="field">
+      <label for="message">Meddelande</label>
+      <textarea name="message" id="message" rows="4" required></textarea>
+    </div>
+  </div>
+  <ul class="actions">
+    <li><input type="submit" value="Skicka" class="primary" /></li>
+    <li><input type="reset" value="Rensa" /></li>
+  </ul>
+</form>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbz3mbN8uaws3p-sJctA1v3RNAKxei3fRYDB13GKKsPaFFhdHwjPIdjUU9B-zG4AnNeO/exec'; // Replace this!
+
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value
+    };
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(response => {
+      alert('Tack! Ditt meddelande har sparats.');
+      e.target.reset();
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      alert('Något gick fel – försök igen senare.');
+    });
+  });
+</script>
+
+
+								
+								<!--<h2 class="major">Kontakt</h2><p>Är du redo att ta rodret över din dataocean? <br> Hör av dig – vi hjälper dig sätta kursen</p>
 								<form id="contacForm" method="post" action="#">
 									<div class="fields">
 										<div class="field half">
@@ -94,7 +147,7 @@
 									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul> -->
-								<script>
+								<!--<script>
   									const scriptURL = 'https://script.google.com/macros/s/AKfycbz3mbN8uaws3p-sJctA1v3RNAKxei3fRYDB13GKKsPaFFhdHwjPIdjUU9B-zG4AnNeO/exec'; // Replace this!
 
   										document.getElementById('contactForm').addEventListener('submit', e => {
@@ -120,7 +173,7 @@
       									alert('Något gick fel – försök igen senare.');
     									});
   									});
-								</script>
+								</script>-->
 							</article>
 
 						<!-- Elements -->
@@ -386,6 +439,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
