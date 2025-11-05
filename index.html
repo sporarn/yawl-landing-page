@@ -70,7 +70,38 @@
 						<!-- WORKING CONTACT FORM -->
 							<article id="contact">
 								<h2 class="major">Kontakt</h2><p>Är du redo att ta rodret över din dataocean? <br> Hör av dig – vi hjälper dig sätta kursen</p>
-									<form id="contactForm">	
+
+
+<form id="contactForm">	
+  <div class="fields">
+    <div class="field half">
+      <label for="name">Namn</label>
+      <input type="text" name="name" id="name" required />
+    </div>
+    <div class="field half">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+    </div>
+    <div class="field">
+      <label for="message">Meddelande</label>
+      <textarea name="message" id="message" rows="4" required></textarea>
+    </div>
+
+    <!-- 🕵️‍♀️ Honeypot field (hidden from users) -->
+    <div style="display:none;">
+      <label for="website">Lämna detta fält tomt</label>
+      <input type="text" name="website" id="website" />
+    </div>
+  </div>
+
+  <ul class="actions">
+    <li><input type="submit" value="Skicka" class="primary" /></li>
+    <li><input type="reset" value="Rensa" /></li>
+  </ul>
+</form>
+
+								
+									<!--<form id="contactForm">	 
   									<div class="fields">
     									<div class="field half">
       										<label for="name">Namn</label>
@@ -89,7 +120,7 @@
     										<li><input type="submit" value="Skicka" class="primary" /></li>
     										<li><input type="reset" value="Rensa" /></li>
   										</ul>
-									</form>
+									</form>-->
 
 
 							<!--	<ul class="icons">
@@ -99,9 +130,51 @@
 									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul> -->
 
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxR0jVCL3Kcc6llXObxAni6gTnf5bxuU5iNb0UNpSEGxKuqmaTA8YnScrQg-8wG0GD1Ow/exec';
+
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    // Collect all form data, including honeypot
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+      honeypot: form.website.value // 🕵️‍♀️ hidden field
+    };
+
+    // Stop bots early (client-side check)
+    if (formData.honeypot !== "") {
+      console.warn("Bot detected — submission blocked.");
+      return; // don't even send
+    }
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.result === "success") {
+        alert('Tack! Ditt meddelande har skickats.');
+        form.reset();
+      } else {
+        alert('Något gick fel – försök igen senare.');
+      }
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      alert('Något gick fel – försök igen senare.');
+    });
+  });
+</script>
 
 								
-								<script> //working script
+								
+								<!--<script> //working script
   									const scriptURL = 'https://script.google.com/macros/s/AKfycbxR0jVCL3Kcc6llXObxAni6gTnf5bxuU5iNb0UNpSEGxKuqmaTA8YnScrQg-8wG0GD1Ow/exec'; // Replace this!
 
   										document.getElementById('contactForm').addEventListener('submit', e => {
@@ -127,7 +200,7 @@
       									alert('Något gick fel – försök igen senare.');
     									});
   									});
-								</script>
+								</script>-->
 								
 							</article>
 
@@ -394,6 +467,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
