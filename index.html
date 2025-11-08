@@ -72,6 +72,46 @@
 								<h2 class="major">Kontakt</h2><p>Är du redo att ta rodret över din dataocean? <br> Hör av dig – vi hjälper dig sätta kursen</p>
 
 <style>
+  /* Hide honeypot field */
+  #website-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+  }
+</style>
+
+<form id="contactForm">
+  <div class="fields">
+    <div class="field half">
+      <label for="name">Namn</label>
+      <input type="text" name="name" id="name" required />
+    </div>
+    <div class="field half">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+    </div>
+    <div class="field">
+      <label for="message">Meddelande</label>
+      <textarea name="message" id="message" rows="4" required></textarea>
+    </div>
+
+    <!-- Honeypot -->
+    <div id="website-field">
+      <label for="website">Lämna detta fält tomt</label>
+      <input type="text" name="website" id="website" autocomplete="off" />
+    </div>
+  </div>
+
+  <ul class="actions">
+    <li><input type="submit" value="Skicka" class="primary" /></li>
+    <li><input type="reset" value="Rensa" /></li>
+  </ul>
+</form>
+								
+								
+								
+<!--<style>
   /* 🔒 Hide honeypot field from humans */
   #website-field {
     position: absolute;
@@ -100,7 +140,7 @@
     </div>
 
     <!-- 🕵️ Honeypot (hidden anti-bot field) -->
-    <div id="website-field">
+    <!--<div id="website-field">
       <label for="website">Lämna detta fält tomt</label>
       <input type="text" name="website" id="website" autocomplete="off" />
     </div>
@@ -110,7 +150,7 @@
     <li><input type="submit" value="Skicka" class="primary" /></li>
     <li><input type="reset" value="Rensa" /></li>
   </ul>
-</form>
+</form>-->
 								
 								
 
@@ -142,9 +182,53 @@
 									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-								</ul>https://script.google.com/macros/s/AKfycbzkE8pHJK-DA7LS7WHBx4GhdHpllvJ6BRkbiJI87Qmp9ZjdLu3FUJ7o6WRKA9TxGQtqWQ/exec -->
+								</ul> -->
 
 <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyj0yFo24ATiuHOGpniSFIiV0rcBZeUL2M2sfZHxhrnu43vRhjKoXHo7yNvwSG3NIeRmQ/exec';
+  const SECRET_KEY = "K-hYzBKGq1kDQKkjVYuoVXXalwU"; // must match your Apps Script
+
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const form = e.target;
+
+    const formData = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim(),
+      honeypot: form.website.value.trim(),
+      key: SECRET_KEY
+    };
+
+    // Client-side honeypot check
+    if (formData.honeypot !== "") {
+      console.warn("Bot detected — submission blocked.");
+      return;
+    }
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.result === "success") {
+        alert('Tack! Ditt meddelande har skickats och ett mejl har skickats till administratören.');
+        form.reset();
+      } else {
+        alert('Obehörig begäran eller misstänkt bot-aktivitet.');
+      }
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      alert('Något gick fel – försök igen senare.');
+    });
+  });
+</script>
+
+
+								
+<!--<script> //working script
   const scriptURL = 'https://script.google.com/macros/s/AKfycbyEiYPFmCAyFT9Hcy7o55_TWMT1juYX3umg-ia25z2cukxx4vfL8noIJjfmjtN6mU6e6Q/exec'; // Replace this!
   const SECRET_KEY = "K-hYzBKGq1kDQKkjVYuoVXXalwU"; // must match your Apps Script key
 
@@ -185,10 +269,10 @@
       alert('Något gick fel – försök igen senare.');
     });
   });
-</script>
+</script>-->
 									
 								
-								<!--<script> //working script
+								<!--<script> 
   									const scriptURL = 'https://script.google.com/macros/s/AKfycbxR0jVCL3Kcc6llXObxAni6gTnf5bxuU5iNb0UNpSEGxKuqmaTA8YnScrQg-8wG0GD1Ow/exec'; // Replace this!
 
   										document.getElementById('contactForm').addEventListener('submit', e => {
@@ -481,6 +565,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
