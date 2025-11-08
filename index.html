@@ -109,73 +109,6 @@
   </ul>
 </form>
 								
-								
-								
-<!--<style>
-  /* 🔒 Hide honeypot field from humans */
-  #website-field {
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    height: 0;
-    width: 0;
-    overflow: hidden;
-    opacity: 0;
-  }
-</style>
-
-<form id="contactForm">	
-  <div class="fields">
-    <div class="field half">
-      <label for="name">Namn</label>
-      <input type="text" name="name" id="name" required />
-    </div>
-    <div class="field half">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" required />
-    </div>
-    <div class="field">
-      <label for="message">Meddelande</label>
-      <textarea name="message" id="message" rows="4" required></textarea>
-    </div>
-
-    <!-- 🕵️ Honeypot (hidden anti-bot field) -->
-    <!--<div id="website-field">
-      <label for="website">Lämna detta fält tomt</label>
-      <input type="text" name="website" id="website" autocomplete="off" />
-    </div>
-  </div>
-
-  <ul class="actions">
-    <li><input type="submit" value="Skicka" class="primary" /></li>
-    <li><input type="reset" value="Rensa" /></li>
-  </ul>
-</form>-->
-								
-								
-
-								
-									<!--<form id="contactForm">	 
-  									<div class="fields">
-    									<div class="field half">
-      										<label for="name">Namn</label>
-      										<input type="text" name="name" id="name" required />
-    									</div>
-    									<div class="field half">
-      										<label for="email">Email</label>
-      										<input type="email" name="email" id="email" required />
-    									</div>
-    									<div class="field">
-      										<label for="message">Meddelande</label>
-      										<textarea name="message" id="message" rows="4" required></textarea>
-    									</div>
-  									</div>
-  										<ul class="actions">
-    										<li><input type="submit" value="Skicka" class="primary" /></li>
-    										<li><input type="reset" value="Rensa" /></li>
-  										</ul>
-									</form>-->
-
 
 							<!--	<ul class="icons">
 									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -225,80 +158,6 @@
     });
   });
 </script>
-
-
-								
-<!--<script> //working script
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyEiYPFmCAyFT9Hcy7o55_TWMT1juYX3umg-ia25z2cukxx4vfL8noIJjfmjtN6mU6e6Q/exec'; // Replace this!
-  const SECRET_KEY = "K-hYzBKGq1kDQKkjVYuoVXXalwU"; // must match your Apps Script key
-
-  document.getElementById('contactForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const form = e.target;
-
-    // Collect form data
-    const formData = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      message: form.message.value.trim(),
-      honeypot: form.website.value.trim(), // hidden field
-      key: SECRET_KEY
-    };
-
-    // 🕵️ Client-side anti-bot check
-    if (formData.honeypot !== "") {
-      console.warn("Bot detected — submission blocked.");
-      return;
-    }
-
-    fetch(scriptURL, {
-      method: 'POST',
-      body: JSON.stringify(formData)
-    })
-    .then(res => res.json())
-    .then(response => {
-      if (response.result === "success") {
-        alert('Tack! Ditt meddelande har skickats.');
-        form.reset();
-      } else {
-        alert('Obehörig begäran eller misstänkt bot-aktivitet.');
-      }
-    })
-    .catch(err => {
-      console.error('Error:', err);
-      alert('Något gick fel – försök igen senare.');
-    });
-  });
-</script>-->
-									
-								
-								<!--<script> 
-  									const scriptURL = 'https://script.google.com/macros/s/AKfycbxR0jVCL3Kcc6llXObxAni6gTnf5bxuU5iNb0UNpSEGxKuqmaTA8YnScrQg-8wG0GD1Ow/exec'; // Replace this!
-
-  										document.getElementById('contactForm').addEventListener('submit', e => {
-   											 e.preventDefault();
-
-    									const formData = {
-      									name: e.target.name.value,
-     									email: e.target.email.value,
-      									message: e.target.message.value
-    									};
-
-    									fetch(scriptURL, {
-      									method: 'POST',
-      									body: JSON.stringify(formData)
-    									})
-    									.then(res => res.json())
-    									.then(response => {
-      									alert('Tack! Ditt meddelande har skickats.');
-      									e.target.reset();
-    									})
-    									.catch(err => {
-      									console.error('Error:', err);
-      									alert('Något gick fel – försök igen senare.');
-    									});
-  									});
-								</script>-->
 								
 							</article>
 
@@ -565,6 +424,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
