@@ -26,7 +26,7 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbyj0yFo24ATiuHOGpniSF
     .then(res => res.json())
     .then(response => {
       if (response.result === "success") {
-        alert('Tack! Ditt meddelande har skickats och ett mejl har skickats till administratören.');
+        alert('Tack! Ditt meddelande har skickats');
         form.reset();
       } else {
         alert('Obehörig begäran eller misstänkt bot-aktivitet.');
